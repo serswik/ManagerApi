@@ -59,7 +59,7 @@ namespace ManagerApi.Controllers
             }
 
             Users.Remove(user);
-            return Ok($"User with ID {id} deleted successfully.")
+            return Ok($"User with ID {id} deleted successfully.");
         }
 
     }
