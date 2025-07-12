@@ -49,5 +49,18 @@ namespace ManagerApi.Controllers
             return user == null ? NotFound() : Ok(user);
         }
 
+        [HttpDelete("{id}")]
+        public ActionResult DeleteUser(int id)
+        {
+            var user = Users.FirstOrDefault(u => u.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            Users.Remove(user);
+            return Ok($"User with ID {id} deleted successfully.")
+        }
+
     }
 }
