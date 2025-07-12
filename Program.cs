@@ -1,3 +1,6 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using ManagerApi.Validators;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers()
@@ -6,7 +9,11 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
         options.JsonSerializerOptions.WriteIndented = true;
-    });
+    })
+    .AddFluentValidation(fv =>
+     {
+         fv.RegisterValidatorsFromAssemblyContaining<UserCreateDtoValidator>();
+     });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
