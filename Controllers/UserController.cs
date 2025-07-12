@@ -20,16 +20,6 @@ namespace ManagerApi.Controllers
         [HttpPost]
         public ActionResult<User> CreateUser([FromBody] UserCreateDto userDto)
         {
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if(userDto.DateOfBirth > DateTime.Now)
-            {
-                return BadRequest("Date of birth cannot be in the future.");
-            }
-
             var newUser = new User
             {
                 Id = _nextId++,
